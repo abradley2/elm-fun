@@ -1,3 +1,3 @@
 # Fun with Elm
 
-`elm make src/app.elm --output public/app.bundle.js`
+`elm make src/Main.elm --output public/main.bundle.js`
