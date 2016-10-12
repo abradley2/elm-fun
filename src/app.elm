@@ -1,31 +1,33 @@
 import Debug exposing (log)
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.App
 
 type Msg
     = Increment
     | Decrement
-    | Other
 
 model =
     { count = 1
-    , bool = False
+    , name = "Hello world"
     }
 
-test = "a message"
-
 update msg model =
-    case log "message = " msg of
-        Increment -> model
-        Decrement -> model
+    case msg of
+        Increment -> { model |
+            count = model.count + 1
+        }
+        Decrement -> { model |
+            count = model.count - 1
+        }
 
 view model =
-    div []
-        [ span [] [text "Hello World"]
-        , button [onClick Other] [text "+"]
+    div [class "container"]
+        [ div [class "alert alert-info"] [text (toString model.count)]
+        , button [class "btn btn-primary",  onClick Increment] [text "+"]
+        , button [class "btn btn-danger", onClick Decrement] [text "-"]
         ]
-
 
 main =
     Html.App.beginnerProgram
