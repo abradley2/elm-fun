@@ -1,21 +1,31 @@
-module Main (..) where
 import Model exposing (model)
 import View exposing (view)
+import Model exposing (Model, model)
 import Action exposing (Action (..))
 import Html.App
 
-import reducers.Todos exposing (todos)
+import Update.Count exposing (count)
+import Update.Message exposing (message)
 
-update : Action -> Model -> Model
+update : Action -> Model -> (Model, Cmd Action)
 update action model =
-    todos action model
-    >>
+    (
+        model 
+            |> count action
+            >> message action
+        , Cmd.none
+    )
 
+subscriptions : Model -> Sub Action
+subscriptions model =
+    Sub.batch
+        []
 
 main : Program Never
 main =
     Html.App.program
-        { view = view
+        { init = ( model, Cmd.none )
+        , view = view
         , update = update
-        , model = model
+        , subscriptions = (always Sub.none)
         }
