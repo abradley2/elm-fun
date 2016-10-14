@@ -2,12 +2,12 @@ module Model exposing (Model, model)
 
 type alias Model =
     { count : Int
-    , name : String
+    , message : String
     }
 
 model : Model
 model =
     { count = 1
-    , name = "Hello world"
+    , message = "Hello world"
     }
 

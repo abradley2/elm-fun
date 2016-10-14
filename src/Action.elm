@@ -1,5 +1,6 @@
 module Action exposing (..)
 
 type Action 
-    = INCREMENT
-    | DECREMENT
+    = Count'INCREMENT
+    | Count'DECREMENT
+    | Message'EDIT_MESSAGE String
