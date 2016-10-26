@@ -1,12 +1,14 @@
 module Action exposing (..)
 
-import Http exposing (Error)
+import Http
+import Model exposing (Todo)
 
 type Action 
-    = Called
+    = HttpError Http.Error
     | Count'INCREMENT
     | Count'DECREMENT
     | Message'EDIT_MESSAGE String
-    | Message'GET_PLANET
-    | Message'GET_PLANET'SUCCESS String
-    | Message'GET_PLANET'ERROR Error
+    | Todos'ADD_TODO
+    | Todos'ADD_TODO'done Int
+    | Todos'EDIT_TODO Todo
+    | Todos'EDIT_TODO'done Todo

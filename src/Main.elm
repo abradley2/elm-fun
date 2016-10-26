@@ -3,8 +3,10 @@ import View exposing (view)
 import Model exposing (Model, model)
 import Action exposing (Action (..))
 import Html.App
+
 import Update.Message exposing (message)
 import Update.Count exposing (count)
+import Update.Todos exposing (todos)
 
 update : Action -> Model -> (Model, Cmd Action)
 update action model =
@@ -12,6 +14,7 @@ update action model =
         (model, [])
             |> count action
             >> message action
+            >> todos action
     in
         (newModel, Cmd.batch commands)
         

@@ -12,6 +12,7 @@ view model =
         [ h3 [] [text model.message]
         , input 
             [ type' "text"
+            , class "form-control"
             , value model.message
             , onInput Message'EDIT_MESSAGE
             ] 
@@ -24,4 +25,10 @@ view model =
                 , button [class "btn btn-danger", onClick Count'DECREMENT] [text "-"]
                 ]
             ]
+        , button [class "btn btn-success", onClick Todos'ADD_TODO] [text "Add Todo"]
+        , ul [class "list-group"] 
+            (List.map (\todo -> 
+                li [class "list-group-item"] [text todo.title]
+            ) model.todos )
         ]
+        
