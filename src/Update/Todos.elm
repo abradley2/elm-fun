@@ -25,18 +25,19 @@ todos action params =
             let (model, commands) = params
             in (
                 model
-                , (Task.perform HttpError Todos'ADD_TODO'done addTodo :: commands)
+                , (Task.perform HttpError Todos'ADD_TODO'done addTodo) :: commands
             )
 
         Todos'ADD_TODO'done createdId ->
             let (model, commands) = params
             in ({
                 model | 
-                todos = {
-                    id = createdId
-                    , title = "New Todo " ++ toString createdId
-                    , completed = False
-                } :: model.todos
+                todos = 
+                    {
+                        id = createdId
+                        , title = "New Todo " ++ toString createdId
+                        , completed = False
+                    } :: model.todos
             }, commands)
 
         _ -> params

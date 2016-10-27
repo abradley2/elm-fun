@@ -7,12 +7,14 @@ import Html.App
 import Update.Message exposing (message)
 import Update.Count exposing (count)
 import Update.Todos exposing (todos)
+import Update.ViewModel exposing (viewModel)
 
 update : Action -> Model -> (Model, Cmd Action)
 update action model =
     let (newModel, commands) = 
         (model, [])
-            |> count action
+            |> viewModel action
+            >> count action
             >> message action
             >> todos action
     in

@@ -12,3 +12,5 @@ type Action
     | Todos'ADD_TODO'done Int
     | Todos'EDIT_TODO Todo
     | Todos'EDIT_TODO'done Todo
+    | ViewModel'TOGGLE_DROPDOWN String
+    | ViewModel'OPEN_ACCORDION String String

@@ -1,5 +1,5 @@
 module View exposing (view)
-
+import Dict
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -30,5 +30,32 @@ view model =
             (List.map (\todo -> 
                 li [class "list-group-item"] [text todo.title]
             ) model.todos )
+        , 
+        let (demoDropdown, clickHandler) = 
+            case Dict.get "demoDropdown" model.viewModel.dropdowns of
+                 Just a -> 
+                    (a, ViewModel'TOGGLE_DROPDOWN "demoDropdown")
+                 Nothing -> 
+                    ({open = False}, ViewModel'TOGGLE_DROPDOWN "demoDropdown")
+        in div 
+            [class (if demoDropdown.open then "dropdown open" else "dropdown")] 
+            [ button 
+                [ class "btn btn-primary"
+                , type' "button"
+                , onClick clickHandler
+                ] 
+                [ text "Dropdown Example"
+                , span [class "caret"] []
+                ]
+            , ul [class "dropdown-menu"]
+                [ li [onClick clickHandler] [a [href "#Juan"] [text "JUAN"]]
+                , li [onClick clickHandler] [a [href "#Two"] [text "TWO"]]
+                , li [onClick clickHandler] [a [href "#Three"] [text "THREE"]]
+                ]
+            ]
+        
+        let (select, dropdown)
+        
+
         ]
         
